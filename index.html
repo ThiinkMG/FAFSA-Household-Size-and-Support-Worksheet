@@ -149,6 +149,31 @@
       min-height: calc(100vh - 200px);
     }
 
+    /* Embedded mode: reduce spacers to prevent oversized host iframes */
+    body.embedded {
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-height: 100vh; /* Critical: prevent infinite vertical expansion */
+    }
+
+    body.embedded .mcf-main {
+      min-height: auto !important;
+      max-height: none !important;
+      padding-bottom: 1.5rem !important;
+    }
+
+    body.embedded .mcf-footer {
+      margin-top: 1.5rem !important;
+      padding: 1.5rem 0 !important;
+    }
+
+    /* CRITICAL FIX: Prevent body from expanding infinitely in iframes */
+    body.embedded,
+    body.embedded html {
+      height: auto !important;
+      min-height: 0 !important;
+    }
+
     .mcf-hero {
       text-align: center;
       margin-bottom: 2rem;
@@ -2635,8 +2660,18 @@
       }, 100);
     }
 
+    // Detect if page is embedded and adjust layout to avoid huge heights
+    function enableEmbedModeIfNeeded() {
+      let embedded = false;
+      try { embedded = window.self !== window.top; } catch (_) { embedded = true; }
+      if (embedded) {
+        document.body.classList.add('embedded');
+      }
+    }
+
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', () => {
+      enableEmbedModeIfNeeded();
       initDarkMode();
       loadAcademicYear();
       loadFormData();
