@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAFSA Household Size & Support Worksheet - My College Finance</title>
+  <style>
+    /* MCF CSS Variables */
+    :root {
+      --mcf-brand-blue: #012699;
+      --mcf-brand-green: #26e011;
+      --mcf-brand-amber: #fdc003;
+      --mcf-brand-black: #000516;
+      --mcf-background: #fafafa;
+      --mcf-foreground: #09090b;
+      --mcf-card: #ffffff;
+      --mcf-card-foreground: #09090b;
+      --mcf-primary: #336bff;
+      --mcf-primary-foreground: #f8fafc;
+      --mcf-secondary: #f1f5f9;
+      --mcf-muted-foreground: #64748b;
+      --mcf-destructive: #ef4444;
+      --mcf-border: #e2e8f0;
+      --mcf-input: #e2e8f0;
+      --mcf-radius: 0.5rem;
+      --mcf-transition: all 0.3s ease;
+    }
+
+    body.dark-mode {
+      --mcf-background: #09090b;
+      --mcf-foreground: #f8fafc;
+      --mcf-card: #1a1a1f;
+      --mcf-card-foreground: #f8fafc;
+      --mcf-primary: #4c6ef5;
+      --mcf-secondary: #374151;
+      --mcf-muted-foreground: #94a3b8;
+      --mcf-destructive: #991b1b;
+      --mcf-border: #374151;
+      --mcf-input: #1f2937;
+      --mcf-brand-blue: #0139cc;
+      --mcf-brand-green: #3ae826;
+      --mcf-brand-amber: #fdc922;
+      --mcf-brand-black: #f0f1ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      background-color: var(--mcf-background);
+      color: var(--mcf-foreground);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: var(--mcf-transition);
+    }
+
+    .mcf-container {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header */
+    .mcf-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(250, 250, 250, 0.95);
+      border-bottom: 1px solid var(--mcf-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .dark-mode .mcf-header {
+      background-color: rgba(9, 9, 11, 0.95);
+    }
+
+    .mcf-header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      gap: 1rem;
+    }
+
+    .mcf-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mcf-logo-header {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .mcf-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mcf-brand-name {
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--mcf-brand-blue);
+      line-height: 1;
+    }
+
+    .mcf-tagline {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mcf-muted-foreground);
+      margin-top: 0.25rem;
+    }
+
+    .mcf-theme-toggle {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 2px solid var(--mcf-border);
+      background: var(--mcf-card);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--mcf-transition);
+      color: var(--mcf-foreground);
+    }
+
+    .mcf-theme-toggle:hover {
+      border-color: var(--mcf-primary);
+      transform: scale(1.1);
+    }
+
+    /* Main Content */
+    .mcf-main {
+      padding: 2rem 0;
+      min-height: calc(100vh - 200px);
+    }
+
+    .mcf-hero {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, rgba(1, 38, 153, 0.05) 0%, transparent 100%);
+      border-radius: calc(var(--mcf-radius) * 2);
+    }
+
+    .mcf-hero h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--mcf-brand-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .mcf-hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--mcf-muted-foreground);
+      margin-bottom: 0.25rem;
+    }
+
+    .mcf-hero-course {
+      display: inline-block;
+      background: var(--mcf-brand-amber);
+      color: var(--mcf-brand-black);
+      padding: 0.375rem 0.75rem;
+      border-radius: var(--mcf-radius);
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Cards */
+    .mcf-card {
+      background-color: var(--mcf-card);
+      border: 2px solid var(--mcf-border);
+      border-radius: calc(var(--mcf-radius) * 1.5);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: var(--mcf-transition);
+    }
+
+    .mcf-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--mcf-border);
+    }
+
+    .mcf-card-icon {
+      font-size: 1.5rem;
+    }
+
+    .mcf-card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--mcf-foreground);
+    }
+
+    /* Form Elements */
+    .mcf-form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .mcf-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--mcf-foreground);
+      margin-bottom: 0.5rem;
+    }
+
+    .mcf-input {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 0.875rem;
+      background-color: var(--mcf-background);
+      color: var(--mcf-foreground);
+      border: 2px solid var(--mcf-input);
+      border-radius: var(--mcf-radius);
+      transition: var(--mcf-transition);
+      font-family: inherit;
+    }
+
+    .mcf-input:focus {
+      outline: none;
+      border-color: var(--mcf-primary);
+      box-shadow: 0 0 0 3px rgba(51, 107, 255, 0.1);
+    }
+
+    .mcf-radio-group {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .mcf-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .mcf-radio-label input[type="radio"] {
+      width: 1.25rem;
+      height: 1.25rem;
+      cursor: pointer;
+    }
+
+    /* Tip Box */
+    .mcf-tip {
+      background: linear-gradient(135deg, rgba(253, 192, 3, 0.1) 0%, transparent 100%);
+      border-left: 4px solid var(--mcf-brand-amber);
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: var(--mcf-radius);
+      font-size: 0.875rem;
+    }
+
+    .mcf-tip strong {
+      color: var(--mcf-brand-amber);
+      font-weight: 600;
+    }
+
+    /* Counter Section */
+    .mcf-counter-grid {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .mcf-counter-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: var(--mcf-background);
+      border: 2px solid var(--mcf-border);
+      border-radius: var(--mcf-radius);
+      transition: var(--mcf-transition);
+    }
+
+    .mcf-counter-item.counted {
+      border-color: var(--mcf-brand-green);
+      background: linear-gradient(135deg, rgba(38, 224, 17, 0.05) 0%, transparent 100%);
+    }
+
+    .mcf-counter-label {
+      flex: 1;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .mcf-counter-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mcf-counter-btn {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--mcf-border);
+      background: var(--mcf-card);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: var(--mcf-transition);
+      color: var(--mcf-foreground);
+    }
+
+    .mcf-counter-btn:hover {
+      border-color: var(--mcf-primary);
+      transform: scale(1.1);
+    }
+
+    .mcf-counter-value {
+      min-width: 32px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--mcf-brand-blue);
+    }
+
+    /* Checkbox */
+    .mcf-checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--mcf-background);
+      border: 2px solid var(--mcf-border);
+      border-radius: var(--mcf-radius);
+      margin-bottom: 0.75rem;
+      transition: var(--mcf-transition);
+      cursor: pointer;
+    }
+
+    .mcf-checkbox-item:hover {
+      border-color: var(--mcf-primary);
+    }
+
+    .mcf-checkbox-item.checked {
+      border-color: var(--mcf-brand-green);
+      background: linear-gradient(135deg, rgba(38, 224, 17, 0.05) 0%, transparent 100%);
+    }
+
+    .mcf-checkbox {
+      width: 1.5rem;
+      height: 1.5rem;
+      min-width: 1.5rem;
+      border: 2px solid var(--mcf-input);
+      border-radius: calc(var(--mcf-radius) * 0.5);
+      appearance: none;
+      cursor: pointer;
+      transition: var(--mcf-transition);
+      position: relative;
+      margin-top: 0.125rem;
+    }
+
+    .mcf-checkbox:checked {
+      background-color: var(--mcf-brand-green);
+      border-color: var(--mcf-brand-green);
+    }
+
+    .mcf-checkbox:checked::after {
+      content: "✓";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--mcf-brand-black);
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .mcf-checkbox-content {
+      flex: 1;
+    }
+
+    .mcf-checkbox-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .mcf-checkbox-criteria {
+      font-size: 0.8rem;
+      color: var(--mcf-muted-foreground);
+      line-height: 1.5;
+    }
+
+    /* Result Box */
+    .mcf-result-box {
+      background: linear-gradient(135deg, rgba(1, 38, 153, 0.1) 0%, rgba(38, 224, 17, 0.1) 100%);
+      border: 3px solid var(--mcf-brand-green);
+      border-radius: calc(var(--mcf-radius) * 1.5);
+      padding: 2rem;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .mcf-result-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--mcf-muted-foreground);
+      margin-bottom: 0.5rem;
+    }
+
+    .mcf-result-value {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--mcf-brand-green);
+      line-height: 1;
+    }
+
+    /* Buttons */
+    .mcf-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--mcf-radius);
+      transition: var(--mcf-transition);
+      cursor: pointer;
+      border: none;
+      outline: none;
+      text-decoration: none;
+      font-family: inherit;
+      gap: 0.5rem;
+    }
+
+    .mcf-btn-primary {
+      background-color: var(--mcf-primary);
+      color: var(--mcf-primary-foreground);
+    }
+
+    .mcf-btn-primary:hover {
+      background-color: var(--mcf-brand-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .mcf-btn-success {
+      background-color: var(--mcf-brand-green);
+      color: var(--mcf-brand-black);
+    }
+
+    .mcf-btn-success:hover {
+      background-color: #1fb80d;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(38, 224, 17, 0.2);
+    }
+
+    .mcf-btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--mcf-border);
+      color: var(--mcf-foreground);
+    }
+
+    .mcf-btn-outline:hover {
+      border-color: var(--mcf-primary);
+      background-color: rgba(51, 107, 255, 0.05);
+    }
+
+    .mcf-btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    /* Tooltip System */
+    .tooltip-trigger {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      cursor: help;
+      color: var(--mcf-primary);
+      margin-left: 0.25rem;
+      font-size: 0.875rem;
+      padding: 0.125rem 0.25rem;
+      border-radius: 50%;
+      transition: var(--mcf-transition);
+    }
+
+    .tooltip-trigger:hover {
+      background-color: var(--mcf-secondary);
+      transform: scale(1.1);
+    }
+
+    .tooltip-popup {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffffff;
+      border: 2px solid var(--mcf-primary);
+      border-radius: var(--mcf-radius);
+      padding: 0.75rem;
+      min-width: 250px;
+      max-width: 350px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease, display 0.2s ease;
+    }
+
+    /* Special positioning for tooltips in hero section to avoid conflicts with sticky elements */
+    .mcf-hero .tooltip-trigger {
+      position: relative;
+      z-index: 99999;
+    }
+
+    .mcf-hero .tooltip-popup {
+      position: fixed;
+      top: 180px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .tooltip-trigger:hover .tooltip-popup {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* When a tooltip is active, reduce z-index of all other tooltip triggers to prevent overlap */
+    .tooltip-trigger:hover {
+      z-index: 100000;
+    }
+
+    /* Ensure tooltip triggers don't show through active tooltips */
+    body:has(.tooltip-trigger:hover) .tooltip-trigger:not(:hover) {
+      z-index: 1;
+    }
+
+    .tooltip-popup strong {
+      display: block;
+      color: var(--mcf-brand-blue);
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .tooltip-popup span {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--mcf-foreground);
+    }
+
+    /* Running Tally Box */
+    .running-tally-box {
+      position: sticky;
+      top: 100px;
+      float: right;
+      width: 280px;
+      background: var(--mcf-card);
+      border: 2px solid var(--mcf-brand-green);
+      border-radius: var(--mcf-radius);
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 40;
+      overflow: hidden;
+      transition: var(--mcf-transition);
+    }
+
+    .tally-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .tally-header:hover {
+      background-color: var(--mcf-secondary);
+    }
+
+    .tally-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--mcf-brand-blue);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tally-toggle-btn {
+      background: none;
+      border: none;
+      padding: 0.25rem;
+      cursor: pointer;
+      color: var(--mcf-brand-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      border-radius: 50%;
+    }
+
+    .tally-toggle-btn:hover {
+      background-color: rgba(51, 107, 255, 0.1);
+    }
+
+    .running-tally-box.collapsed .tally-toggle-btn {
+      transform: rotate(-90deg);
+    }
+
+    .tally-content {
+      padding: 0 1rem 1rem 1rem;
+      max-height: 500px;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      opacity: 1;
+    }
+
+    .running-tally-box.collapsed .tally-content {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      opacity: 0;
+    }
+
+    .tally-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--mcf-border);
+      font-size: 0.875rem;
+    }
+
+    .tally-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .tally-item span:first-child {
+      color: var(--mcf-muted-foreground);
+    }
+
+    .tally-item strong {
+      font-size: 1.25rem;
+      color: var(--mcf-brand-green);
+      font-weight: 700;
+    }
+
+    .tally-status {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 2px solid var(--mcf-border);
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--mcf-primary);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .tally-item strong.pulse-animation {
+      animation: pulse 0.3s ease;
+    }
+
+    /* Knowledge Check */
+    .knowledge-check {
+      background: linear-gradient(135deg, rgba(51, 107, 255, 0.05) 0%, rgba(38, 224, 17, 0.05) 100%);
+      border: 2px solid var(--mcf-primary);
+      border-radius: var(--mcf-radius);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .kc-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .kc-icon {
+      font-size: 1.5rem;
+    }
+
+    .kc-header h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--mcf-brand-blue);
+      margin: 0;
+    }
+
+    .kc-question {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--mcf-foreground);
+      margin-bottom: 1rem;
+    }
+
+    .kc-options {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .kc-btn {
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--mcf-radius);
+      border: 2px solid var(--mcf-border);
+      background: var(--mcf-card);
+      color: var(--mcf-foreground);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--mcf-transition);
+    }
+
+    .kc-btn:hover {
+      border-color: var(--mcf-primary);
+      background-color: rgba(51, 107, 255, 0.1);
+    }
+
+    .kc-feedback {
+      padding: 1rem;
+      border-radius: var(--mcf-radius);
+      margin-top: 1rem;
+    }
+
+    .kc-correct {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--mcf-brand-green);
+      margin-bottom: 0.5rem;
+    }
+
+    .kc-incorrect {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--mcf-destructive);
+      margin-bottom: 0.5rem;
+    }
+
+    .kc-feedback p {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--mcf-foreground);
+      margin: 0.5rem 0 0 0;
+    }
+
+    /* Resource Hub Styles */
+    .resource-hub {
+      margin-top: 1.5rem;
+      border: 2px solid var(--mcf-border);
+      border-radius: var(--mcf-radius);
+      background: var(--mcf-card);
+      overflow: hidden;
+    }
+
+    .resource-hub-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(51, 107, 255, 0.05) 0%, rgba(38, 224, 17, 0.05) 100%);
+      border-bottom: 2px solid var(--mcf-border);
+      transition: background-color 0.2s ease;
+    }
+
+    .resource-hub-header:hover {
+      background: linear-gradient(135deg, rgba(51, 107, 255, 0.1) 0%, rgba(38, 224, 17, 0.1) 100%);
+    }
+
+    .resource-hub-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--mcf-brand-blue);
+      margin: 0;
+    }
+
+    .resource-hub-icon {
+      font-size: 1.5rem;
+    }
+
+    .resource-hub-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      color: var(--mcf-primary);
+      transition: transform 0.3s ease;
+    }
+
+    .resource-hub.collapsed .resource-hub-toggle {
+      transform: rotate(-90deg);
+    }
+
+    .resource-hub-content {
+      max-height: 2000px;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+      opacity: 1;
+      padding: 1.5rem;
+    }
+
+    .resource-hub.collapsed .resource-hub-content {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      opacity: 0;
+    }
+
+    .resource-intro {
+      font-size: 0.875rem;
+      color: var(--mcf-muted-foreground);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .resource-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .resource-table thead {
+      background: var(--mcf-background);
+    }
+
+    .resource-table th {
+      padding: 0.75rem;
+      text-align: left;
+      font-weight: 700;
+      color: var(--mcf-brand-blue);
+      border-bottom: 2px solid var(--mcf-border);
+    }
+
+    .resource-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--mcf-border);
+      vertical-align: top;
+    }
+
+    .resource-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .resource-table tbody tr:hover {
+      background: var(--mcf-background);
+    }
+
+    .resource-link {
+      color: var(--mcf-primary);
+      text-decoration: none;
+      word-break: break-all;
+      transition: color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .resource-link:hover {
+      color: var(--mcf-brand-blue);
+      text-decoration: underline;
+    }
+
+    .resource-link::after {
+      content: "↗";
+      font-size: 0.75rem;
+    }
+
+    .award-year-badge {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      background: rgba(51, 107, 255, 0.1);
+      color: var(--mcf-primary);
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .resource-note {
+      background: rgba(253, 192, 3, 0.1);
+      border-left: 4px solid var(--mcf-warning);
+      padding: 1rem;
+      border-radius: var(--mcf-radius);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-top: 1rem;
+    }
+
+    .resource-note strong {
+      color: var(--mcf-warning);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .running-tally-box {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        float: none;
+        width: 100%;
+        border-radius: var(--mcf-radius) var(--mcf-radius) 0 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        margin: 0;
+        z-index: 100;
+        box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+      }
+
+      .tally-header {
+        padding: 0.75rem 1rem;
+      }
+
+      .tally-header h3 {
+        font-size: 0.9rem;
+      }
+
+      .tally-content {
+        padding: 0 1rem 0.75rem 1rem;
+      }
+
+      /* Hero tooltip positioning on mobile */
+      .mcf-hero .tooltip-popup {
+        position: fixed;
+        top: 120px;
+        left: 5%;
+        right: 5%;
+        width: 90%;
+        max-width: 90%;
+        transform: none;
+      }
+
+      .tally-item {
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
+      }
+
+      .tally-item strong {
+        font-size: 1.1rem;
+      }
+
+      .tally-status {
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .tooltip-popup {
+        position: fixed;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        top: auto;
+        transform: none;
+        max-width: none;
+      }
+    }
+
+    /* Footer */
+    .mcf-footer {
+      background: linear-gradient(to bottom, #111827, #000000);
+      color: white;
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+
+    .mcf-footer-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .mcf-footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mcf-footer-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      margin: 0;
+    }
+
+    .mcf-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .mcf-footer-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.3s ease;
+    }
+
+    .mcf-footer-link:hover {
+      color: var(--mcf-brand-amber);
+      text-decoration: underline;
+    }
+
+    .mcf-footer-separator {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.875rem;
+    }
+
+    .mcf-footer-tagline {
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      color: var(--mcf-brand-amber);
+      font-weight: 500;
+      margin: 1rem 0;
+    }
+
+    .mcf-footer-copyright {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 0;
+    }
+
+    /* Reminders Section */
+    .mcf-reminder-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mcf-reminder-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      font-size: 0.875rem;
+    }
+
+    .mcf-reminder-list li::before {
+      content: "✅";
+      font-size: 1.125rem;
+      flex-shrink: 0;
+    }
+
+    /* ========================================
+       MOBILE & TABLET RESPONSIVE OPTIMIZATIONS
+       Following MCF Mobile Optimizer Agent Guidelines
+       ======================================== */
+
+    /* Prevent awkward hyphenation on titles */
+    h1, h2, h3, h4, h5, h6,
+    .mcf-hero h1,
+    .mcf-hero-subtitle,
+    .mcf-card-title {
+      hyphens: none !important;
+      -webkit-hyphens: none !important;
+      -ms-hyphens: none !important;
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+
+    /* Body content - allow natural hyphenation */
+    p, li, td {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    /* ========================================
+       EXTRA SMALL DEVICES (≤375px)
+       iPhone SE, small Android phones
+       ======================================== */
+    @media (max-width: 375px) {
+      .mcf-container {
+        padding: 0 0.75rem;
+      }
+
+      .mcf-card {
+        padding: 1rem;
+      }
+
+      .mcf-hero h1 {
+        font-size: 1.75rem; /* 28px */
+      }
+
+      .mcf-hero-subtitle {
+        font-size: 1rem; /* 16px minimum */
+      }
+
+      .mcf-card-title {
+        font-size: 1.5rem; /* 24px */
+      }
+
+      .mcf-result-value {
+        font-size: 2.5rem; /* 40px */
+      }
+
+      /* Running tally on very small screens */
+      .running-tally-box {
+        border-radius: 0;
+      }
+    }
+
+    /* ========================================
+       MOBILE DEVICES (≤768px)
+       Primary mobile breakpoint
+       ======================================== */
+    @media (max-width: 768px) {
+      /* Hide brand text on mobile */
+      .mcf-brand-text {
+        display: none;
+      }
+
+      /* Mobile header sizing */
+      .mcf-header {
+        height: 64px;
+      }
+
+      .mcf-header-content {
+        height: 64px;
+      }
+
+      .mcf-logo-header {
+        width: 50px;
+        height: 50px;
+      }
+
+      .mcf-theme-toggle {
+        width: 48px;
+        height: 48px;
+      }
+
+      .mcf-theme-toggle svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Mobile typography */
+      body {
+        font-size: 17px; /* Slightly smaller but readable */
+      }
+
+      .mcf-hero h1 {
+        font-size: 2rem; /* 32px - very readable */
+      }
+
+      .mcf-hero-subtitle {
+        font-size: 1.125rem; /* 18px - clearly readable */
+      }
+
+      .mcf-card-title {
+        font-size: 1.75rem; /* 28px */
+      }
+
+      .mcf-card {
+        padding: 1.25rem;
+      }
+
+      .mcf-result-value {
+        font-size: 2.5rem;
+      }
+
+      /* Button group stacks vertically */
+      .mcf-btn-group {
+        flex-direction: column;
+      }
+
+      .mcf-btn-group .mcf-btn {
+        width: 100%;
+      }
+
+      /* Buttons maintain readability */
+      .mcf-btn {
+        font-size: 1.0625rem; /* 17px */
+        padding: 0.9375rem 1.5rem;
+        min-height: 52px;
+      }
+
+      /* Mobile footer */
+      .mcf-footer {
+        padding: 2.5rem 0;
+      }
+
+      .mcf-logo {
+        width: 80px;
+        height: 80px;
+      }
+
+      .mcf-footer-title {
+        font-size: 1.5rem; /* 24px */
+      }
+
+      .mcf-footer-link {
+        font-size: 1rem; /* 16px - still readable */
+        padding: 0.625rem 0.75rem;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .mcf-footer-tagline {
+        font-size: 0.9375rem; /* 15px */
+      }
+
+      /* Helper text minimum size */
+      .mcf-tip {
+        font-size: 0.9375rem; /* 15px */
+      }
+
+      /* Container optimization */
+      .mcf-container {
+        max-width: 100%;
+        padding: 0 1rem;
+      }
+
+      /* Tighten vertical spacing */
+      .mcf-hero {
+        margin-bottom: 1rem;
+      }
+
+      /* Resource Hub Mobile Styles */
+      .resource-table {
+        font-size: 0.75rem;
+      }
+
+      .resource-table th,
+      .resource-table td {
+        padding: 0.5rem;
+        display: block;
+        width: 100%;
+      }
+
+      .resource-table thead {
+        display: none;
+      }
+
+      .resource-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--mcf-border);
+        border-radius: var(--mcf-radius);
+        padding: 0.75rem;
+      }
+
+      .resource-table td {
+        border: none;
+        padding: 0.25rem 0;
+      }
+
+      .resource-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        display: block;
+        margin-bottom: 0.25rem;
+        color: var(--mcf-brand-blue);
+      }
+
+      .resource-link {
+        word-break: break-word;
+        font-size: 0.75rem;
+      }
+    }
+
+    /* ========================================
+       TABLET DEVICES (768px - 1024px)
+       iPad, Android tablets, Surface
+       ======================================== */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      /* Enhanced touch targets for finger/stylus */
+      .mcf-btn {
+        min-height: 52px;
+        min-width: 52px;
+        padding: 1rem 2rem;
+        font-size: 1.125rem; /* 18px */
+      }
+
+      /* Optimized typography for tablet reading distance */
+      body {
+        font-size: 17px;
+      }
+
+      .mcf-hero h1 {
+        font-size: clamp(2rem, 4vw, 2.5rem); /* 32px - 40px */
+      }
+
+      .mcf-hero-subtitle {
+        font-size: 1.1875rem; /* 19px */
+      }
+
+      .mcf-card-title {
+        font-size: clamp(1.75rem, 3vw, 2rem); /* 28px - 32px */
+      }
+
+      /* Increased spacing for better visual hierarchy */
+      .mcf-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Wider containers for tablet screen real estate */
+      .mcf-container {
+        max-width: 90%;
+        padding: 0 2rem;
+      }
+
+      /* Enhanced header for tablets */
+      .mcf-header {
+        height: 72px;
+      }
+
+      .mcf-logo-header {
+        width: 64px;
+        height: 64px;
+      }
+
+      .mcf-brand-name {
+        font-size: 1.375rem; /* 22px */
+      }
+
+      .mcf-theme-toggle {
+        width: 52px;
+        height: 52px;
+      }
+
+      /* Footer optimization */
+      .mcf-footer {
+        padding: 3rem 0;
+      }
+
+      .mcf-logo {
+        width: 90px;
+        height: 90px;
+      }
+
+      .mcf-footer-title {
+        font-size: 1.625rem; /* 26px */
+      }
+
+      /* Better button spacing in groups */
+      .mcf-btn-group {
+        gap: 1.5rem;
+      }
+
+      /* Side-by-side buttons for horizontal space */
+      .mcf-btn-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .mcf-btn {
+        flex: 1 1 auto;
+        min-width: 200px;
+        max-width: 280px;
+      }
+    }
+
+    /* ========================================
+       TABLET PORTRAIT (768px - 834px)
+       ======================================== */
+    @media (min-width: 768px) and (max-width: 834px) and (orientation: portrait) {
+      .mcf-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ========================================
+       TABLET LANDSCAPE (834px - 1024px)
+       ======================================== */
+    @media (min-width: 834px) and (max-width: 1024px) and (orientation: landscape) {
+      .mcf-container {
+        max-width: 750px;
+      }
+
+      /* Side-by-side layout where appropriate */
+      .mcf-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .mcf-header,
+      .mcf-theme-toggle,
+      .mcf-btn-group,
+      .mcf-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="mcf-header">
+    <div class="mcf-container">
+      <div class="mcf-header-content">
+        <div class="mcf-header-brand">
+          <img
+            src="https://static.wixstatic.com/media/c24a60_2b6231b666214539ae22ebd2dffe7a09~mv2.png"
+            alt="My College Finance Logo"
+            class="mcf-logo-header"
+          >
+          <div class="mcf-brand-text">
+            <h1 class="mcf-brand-name">MY COLLEGE FINANCE</h1>
+            <p class="mcf-tagline">EDUCATE • MOTIVATE • ELEVATE</p>
+          </div>
+        </div>
+        <button id="mcf-theme-toggle" class="mcf-theme-toggle" aria-label="Toggle dark mode">
+          <svg class="mcf-sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="4" fill="currentColor"/>
+            <path d="M10 0v4M10 16v4M20 10h-4M4 10H0M17.07 2.93l-2.83 2.83M5.76 14.24l-2.83 2.83M17.07 17.07l-2.83-2.83M5.76 5.76L2.93 2.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="mcf-moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="display:none;">
+            <path d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C10.3395 3 10.6734 3.02389 11 3.07039C9.27477 4.07544 8 5.8965 8 8C8 11.3137 10.6863 14 14 14C15.1035 14 16.0754 13.6238 16.9296 12.9998C16.9762 13.3266 17 13.6605 17 14Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="mcf-main">
+    <div class="mcf-container">
+      <!-- Hero Section -->
+      <div class="mcf-hero">
+        <h1>FAFSA Household Size & Support Worksheet</h1>
+        <p class="mcf-hero-subtitle">
+          Academic Year <span id="heroAcademicYear">2025 – 2026</span> (Uses <span id="heroTaxYear">2023</span> Tax Data)
+          <span class="tooltip-trigger">
+            ℹ️
+            <span class="tooltip-popup">
+              <strong>Why <span id="tooltipTaxYear">2023</span> Tax Data?</strong>
+              <span style="display: block; margin-top: 0.5rem;">The <span id="tooltipAcademicYear">2025-2026</span> FAFSA uses your <span id="tooltipTaxYearFull">2023</span> tax information (filed in <span id="tooltipFilingYear">2024</span>) because it's the most recent complete tax year when you apply. This is called "prior-prior year" data - it allows you to use already-filed taxes rather than estimating.</span>
+            </span>
+          </span>
+        </p>
+        <span class="mcf-hero-course">FAFSA Mastery</span>
+      </div>
+
+      <!-- Running Tally Box (Sticky Sidebar) -->
+      <div class="running-tally-box" id="runningTallyBox">
+        <div class="tally-header" onclick="toggleTallyBox()">
+          <h3>📊 Your FAFSA Numbers</h3>
+          <button class="tally-toggle-btn" id="tallyToggleBtn" aria-label="Toggle tally box">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </button>
+        </div>
+        <div class="tally-content" id="tallyContent">
+          <div class="tally-item">
+            <span>Family Size:</span>
+            <strong id="tally-family-size">3</strong>
+          </div>
+          <div class="tally-item">
+            <span>Number in College:</span>
+            <strong id="tally-college">1</strong>
+          </div>
+          <div class="tally-status">
+            <span id="tally-status-icon">⏳</span>
+            <span id="tally-status-text">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Information -->
+      <div class="mcf-card">
+        <div class="mcf-card-header">
+          <span class="mcf-card-icon">👤</span>
+          <h2 class="mcf-card-title">Student Information</h2>
+        </div>
+        
+        <div class="mcf-form-group">
+          <label class="mcf-label" for="studentName">Student Name</label>
+          <input type="text" id="studentName" class="mcf-input" placeholder="Enter your full name">
+        </div>
+
+        <div class="mcf-form-group">
+          <label class="mcf-label" for="academicYear">
+            Academic Year
+            <span class="tooltip-trigger">
+              ℹ️
+              <span class="tooltip-popup">
+                <strong>Select Your FAFSA Year</strong>
+                <span style="display: block; margin-top: 0.5rem;">Choose the academic year you're applying for. This will automatically update the tax year information throughout the worksheet.</span>
+                <span style="display: block; margin-top: 0.5rem;"><strong>Example:</strong> For 2025-2026 academic year (starting Fall 2025), you'll use 2023 tax data (prior-prior year).</span>
+              </span>
+            </span>
+          </label>
+          <select id="academicYear" class="mcf-input" onchange="updateAcademicYear()">
+            <option value="2024-2025">2024-2025 (Uses 2022 Tax Data)</option>
+            <option value="2025-2026" selected>2025-2026 (Uses 2023 Tax Data)</option>
+            <option value="2026-2027">2026-2027 (Uses 2024 Tax Data)</option>
+            <option value="2027-2028">2027-2028 (Uses 2025 Tax Data)</option>
+            <option value="2028-2029">2028-2029 (Uses 2026 Tax Data)</option>
+          </select>
+        </div>
+
+        <div class="mcf-form-group">
+          <label class="mcf-label">
+            FAFSA Dependency Status
+            <span class="tooltip-trigger">
+              ℹ️
+              <span class="tooltip-popup">
+                <strong>Dependent vs Independent</strong>
+                <span style="display: block; margin-top: 0.5rem;"><strong>Dependent Student:</strong> Must include parent information on FAFSA. Your family size includes you + parents + siblings/dependents receiving >51% support.</span>
+                <span style="display: block; margin-top: 0.5rem;"><strong>Independent Student:</strong> Do NOT include parent info. Your family size includes you + spouse (if married) + your children/dependents receiving >51% support.</span>
+                <span style="display: block; margin-top: 0.5rem;">Most undergraduate students under 24 are dependent unless they meet specific criteria (married, have children, veteran, etc.).</span>
+              </span>
+            </span>
+          </label>
+          <div class="mcf-radio-group">
+            <label class="mcf-radio-label">
+              <input type="radio" name="dependencyStatus" value="dependent" checked>
+              <span>Dependent (Student includes parent info)</span>
+            </label>
+            <label class="mcf-radio-label">
+              <input type="radio" name="dependencyStatus" value="independent">
+              <span>Independent (Student does not include parent info)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="mcf-tip">
+          <strong>💡 Tip:</strong> Your status determines whether you count parents or a spouse in your family size.
+        </div>
+      </div>
+
+      <!-- Part 1: Family Size -->
+      <div class="mcf-card">
+        <div class="mcf-card-header">
+          <span class="mcf-card-icon">🏠</span>
+          <h2 class="mcf-card-title">Part 1 — Determining Family Size</h2>
+        </div>
+
+        <p style="margin-bottom: 1.5rem; color: var(--mcf-muted-foreground); font-size: 0.875rem;">
+          Your <strong>Family Size</strong>
+          <span class="tooltip-trigger">
+            ℹ️
+            <span class="tooltip-popup">
+              <strong>What is FAFSA Family Size?</strong>
+              <span style="display: block; margin-top: 0.5rem;">This is the total number of people in your household who receive more than half (51%) of their financial support from you or your parents during the FAFSA aid year.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Aid Year:</strong> <span id="aidYearDates">July 1, 2025 - June 30, 2026</span></span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Includes:</strong> You, parents (if dependent), spouse (if married & independent), children/dependents you support, siblings/relatives receiving >51% support.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Does NOT include:</strong> Parents (if independent), people with their own income covering most expenses, temporary guests.</span>
+            </span>
+          </span>
+          includes everyone who receives <strong>more than half of their support</strong>
+          <span class="tooltip-trigger">
+            ℹ️
+            <span class="tooltip-popup">
+              <strong>The 51% Support Rule</strong>
+              <span style="display: block; margin-top: 0.5rem;"><strong>What counts as support?</strong> Housing, food, clothing, medical care, transportation, education, and other living expenses.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>How to calculate:</strong> Add up ALL of someone's annual expenses. If you (or your parents) pay MORE THAN 51%, they count in your family size.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Example:</strong> Your grandmother lives with you. Her total expenses are $12,000/year. You pay $7,000 (58%) and she pays $5,000 from Social Security (42%). She COUNTS because you pay >51%.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Counter-example:</strong> If she pays $7,000 and you pay $5,000, she does NOT count (you're paying less than 51%).</span>
+            </span>
+          </span>
+          from you (or your parents if you're dependent) during the aid year.
+        </p>
+
+        <!-- Section A: Required Members -->
+        <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: var(--mcf-brand-blue);">
+          A. Required Family Members (Auto-Include Everyone Below)
+          <span class="tooltip-trigger">
+            ℹ️
+            <span class="tooltip-popup">
+              <strong>Required Family Members</strong>
+              <span style="display: block; margin-top: 0.5rem;">These people ALWAYS count in your family size - no 51% calculation needed. You cannot exclude them even if they have their own income.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>For Dependent Students:</strong> You + parents who provide FAFSA info</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>For Independent Students:</strong> You + spouse (if married)</span>
+            </span>
+          </span>
+        </h3>
+
+        <div class="mcf-counter-grid">
+          <div class="mcf-counter-item counted">
+            <span class="mcf-counter-label">
+              <strong>The Student</strong>
+            </span>
+            <div class="mcf-counter-control">
+              <span class="mcf-counter-value">1</span>
+            </div>
+          </div>
+
+          <div class="mcf-counter-item counted" id="contributorItem">
+            <span class="mcf-counter-label">
+              <strong id="contributorLabel">
+                Parent(s) (Contributor on FAFSA)
+                <span class="tooltip-trigger">
+                  ℹ️
+                  <span class="tooltip-popup">
+                    <strong>Who is a Contributor?</strong>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>For Dependent Students:</strong> Your parent(s) whose financial information you report on FAFSA. This could be 1 parent (if single/divorced) or 2 parents (if married to each other).</span>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>For Independent Students:</strong> Your spouse (if married). Select "0" if single/unmarried.</span>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>Important:</strong> Step-parents count if they're married to your biological/adoptive parent and live together.</span>
+                  </span>
+                </span>
+              </strong>
+              <div style="font-size: 0.75rem; color: var(--mcf-muted-foreground); margin-top: 0.25rem;">
+                Include each parent whose financial info is reported
+              </div>
+            </span>
+            <div class="mcf-counter-control">
+              <button class="mcf-counter-btn" onclick="adjustCounter('contributorCount', -1)">−</button>
+              <span class="mcf-counter-value" id="contributorCount">2</span>
+              <button class="mcf-counter-btn" onclick="adjustCounter('contributorCount', 1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--mcf-background); padding: 1rem; border-radius: var(--mcf-radius); margin: 1rem 0;">
+          <strong style="color: var(--mcf-brand-blue);">Section A Total:</strong>
+          <span id="sectionATotal" style="font-size: 1.5rem; font-weight: 700; color: var(--mcf-brand-green); margin-left: 0.5rem;">3</span>
+        </div>
+
+        <!-- Section B: Conditional Members -->
+        <h3 style="font-size: 1.125rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--mcf-brand-blue);">
+          B. Other Eligible Family Members (Conditional Include)
+          <span class="tooltip-trigger">
+            ℹ️
+            <span class="tooltip-popup">
+              <strong>Conditional Family Members</strong>
+              <span style="display: block; margin-top: 0.5rem;">These people MAY count in your family size - but ONLY if you provide more than 51% of their support.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Examples who might count:</strong> Siblings living at home, your children, elderly relatives you support, other dependents.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Do NOT count:</strong> Roommates, people with jobs covering their own expenses, relatives you help occasionally (less than 51%).</span>
+            </span>
+          </span>
+        </h3>
+
+        <p style="margin-bottom: 1rem; color: var(--mcf-muted-foreground); font-size: 0.875rem;">
+          Count each person only if you or your parents provide
+          <span class="tooltip-trigger">
+            more than 51% of their support
+            <span class="tooltip-popup">
+              <strong>The 51% Support Rule</strong>
+              <span style="display: block; margin-top: 0.5rem;">To include someone in your household, you (or your parents if you're dependent) must pay for MORE THAN HALF of their total living expenses. Add up all costs (housing, food, medical, clothing, etc.) and calculate what percentage you pay.</span>
+            </span>
+          </span> during the aid year.
+        </p>
+
+        <div id="sectionBItems">
+          <!-- Dependent Children -->
+          <div class="mcf-checkbox-item" onclick="toggleCheckbox('dependentChildren', event)">
+            <input type="checkbox" class="mcf-checkbox" id="dependentChildren" onclick="event.stopPropagation(); handleCheckboxClick('dependentChildren')">
+            <div class="mcf-checkbox-content">
+              <div class="mcf-checkbox-title">
+                Dependent Children (Siblings or Student's Children)
+                <span class="tooltip-trigger">
+                  ℹ️
+                  <span class="tooltip-popup">
+                    <strong>Who Qualifies as Dependent Children?</strong>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>For Dependent Students:</strong> Your siblings who are legal dependents of your parents, live with your family (or are away at college), and receive more than 51% of their support from your parents.</span>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>For Independent Students:</strong> Your own children who are legal dependents of you, live with you (or are away at college), and receive more than 51% of their support from you.</span>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>Key rule:</strong> They must receive MORE than half their support from the contributors (you or your parents). If they have their own income covering most expenses, don't count them.</span>
+                  </span>
+                </span>
+              </div>
+              <div class="mcf-checkbox-criteria">
+                1️⃣ Legal dependent of the contributor(s) <br>
+                2️⃣ Lives with you / is away for college <br>
+                3️⃣ Receives > 51% support
+              </div>
+              <div style="margin-top: 0.75rem;">
+                <label style="font-size: 0.875rem; font-weight: 600; display: block; margin-bottom: 0.5rem;">Number of people in this category:</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <button class="mcf-counter-btn" onclick="event.stopPropagation(); adjustCounter('dependentChildrenCount', -1)">−</button>
+                  <span class="mcf-counter-value" id="dependentChildrenCount">0</span>
+                  <button class="mcf-counter-btn" onclick="event.stopPropagation(); adjustCounter('dependentChildrenCount', 1)">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Dependents -->
+          <div class="mcf-checkbox-item" onclick="toggleCheckbox('otherDependents', event)">
+            <input type="checkbox" class="mcf-checkbox" id="otherDependents" onclick="event.stopPropagation(); handleCheckboxClick('otherDependents')">
+            <div class="mcf-checkbox-content">
+              <div class="mcf-checkbox-title">
+                Other Dependents (Grandparents, relatives, others)
+                <span class="tooltip-trigger">
+                  ℹ️
+                  <span class="tooltip-popup">
+                    <strong>Who Qualifies as Other Dependents?</strong>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>Examples:</strong> Grandparents, aunts, uncles, cousins, elderly relatives, foster children, or any other person who currently lives in your household.</span>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>Two Requirements:</strong></span>
+                    <ul style="margin-top:0.25rem; margin-left: 1.25rem; font-size: 0.875rem;">
+                      <li>They must live with you NOW (not just visiting temporarily)</li>
+                      <li>You (or your parents) provide MORE than 51% of their financial support</li>
+                    </ul>
+                    <span style="display: block; margin-top: 0.5rem;"><strong>Common scenario:</strong> If your grandmother lives with your family but her Social Security covers most of her expenses (rent, food, medical), she does NOT qualify. You must be providing the majority of her support.</span>
+                  </span>
+                </span>
+              </div>
+              <div class="mcf-checkbox-criteria">
+                1️⃣ Currently lives with you <br>
+                2️⃣ Receives > 51% support from you
+              </div>
+              <div style="margin-top: 0.75rem;">
+                <label style="font-size: 0.875rem; font-weight: 600; display: block; margin-bottom: 0.5rem;">Number of people in this category:</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <button class="mcf-counter-btn" onclick="event.stopPropagation(); adjustCounter('otherDependentsCount', -1)">−</button>
+                  <span class="mcf-counter-value" id="otherDependentsCount">0</span>
+                  <button class="mcf-counter-btn" onclick="event.stopPropagation(); adjustCounter('otherDependentsCount', 1)">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--mcf-background); padding: 1rem; border-radius: var(--mcf-radius); margin: 1rem 0;">
+          <strong style="color: var(--mcf-brand-blue);">Section B Total:</strong>
+          <span id="sectionBTotal" style="font-size: 1.5rem; font-weight: 700; color: var(--mcf-brand-green); margin-left: 0.5rem;">0</span>
+        </div>
+
+        <!-- Final Family Size -->
+        <div class="mcf-result-box">
+          <div class="mcf-result-label">✅ TOTAL FAFSA FAMILY SIZE</div>
+          <div class="mcf-result-value" id="finalFamilySize">3</div>
+        </div>
+
+        <div class="mcf-tip">
+          <strong>💡 Tip:</strong> If your household changed since 2023 (e.g., birth, divorce, death), use the current size as of today — not your tax return.
+        </div>
+
+        <!-- Knowledge Check: Family Size -->
+        <div class="knowledge-check">
+          <div class="kc-header">
+            <span class="kc-icon">❓</span>
+            <h4>Quick Knowledge Check</h4>
+          </div>
+          <p class="kc-question">
+            True or False: If my grandmother lives with us but receives Social Security that covers most of her expenses, I should include her in my household size.
+          </p>
+          <div class="kc-options">
+            <button onclick="checkAnswer('q1', false, this)" class="kc-btn">True</button>
+            <button onclick="checkAnswer('q1', true, this)" class="kc-btn">False</button>
+          </div>
+          <div class="kc-feedback" id="kc-feedback-q1" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- Part 2: Number in College -->
+      <div class="mcf-card">
+        <div class="mcf-card-header">
+          <span class="mcf-card-icon">🎓</span>
+          <h2 class="mcf-card-title">Part 2 — Calculating Number in College
+            <span class="tooltip-trigger">
+              ℹ️
+              <span class="tooltip-popup">
+                <strong>What is "Number in College"?</strong>
+                <span style="display: block; margin-top: 0.5rem;">The count of people in your FAFSA family size who are enrolled at least half-time in a degree or certificate program during the <span class="dynamic-aid-year">2025-2026</span> aid year.</span>
+                <span style="display: block; margin-top: 0.5rem;"><strong>Why it matters:</strong> While this no longer affects the Student Aid Index (SAI) formula, it's still used for Pell Grant eligibility and many state/institutional aid programs. Some colleges may consider it for professional judgment adjustments.</span>
+                <span style="display: block; margin-top: 0.5rem;"><strong>Important:</strong> You can ONLY count people who are already included in your Family Size from Part 1.</span>
+              </span>
+            </span>
+          </h2>
+        </div>
+
+        <p style="margin-bottom: 1.5rem; color: var(--mcf-muted-foreground); font-size: 0.875rem;">
+          This no longer affects the Student Aid Index (SAI) but is still used for Pell Grant and some state/institutional aid programs.
+        </p>
+
+        <div class="mcf-counter-grid">
+          <div class="mcf-counter-item counted">
+            <span class="mcf-counter-label">
+              <strong>The Student</strong>
+              <div style="font-size: 0.75rem; color: var(--mcf-muted-foreground); margin-top: 0.25rem;">
+                Enrolled ≥
+                <span class="tooltip-trigger">
+                  half-time
+                  <span class="tooltip-popup">
+                    <strong>Half-Time Enrollment</strong>
+                    <span style="display: block; margin-top: 0.5rem;">Enrolled in at least 6 credit hours per semester (or 12 per year) at a degree-granting college or career school. This is typically half of what's considered full-time enrollment.</span>
+                  </span>
+                </span> in a degree or certificate program
+              </div>
+            </span>
+            <div class="mcf-counter-control">
+              <span class="mcf-counter-value">1</span>
+            </div>
+          </div>
+
+          <div class="mcf-counter-item" id="siblingsInCollege">
+            <span class="mcf-counter-label">
+              <strong>Siblings / Dependents in College</strong>
+              <span class="tooltip-trigger">
+                ℹ️
+                <span class="tooltip-popup">
+                  <strong>Who Can You Count Here?</strong>
+                  <span style="display: block; margin-top: 0.5rem;"><strong>Include:</strong> Siblings, children, or other dependents who are:</span>
+                  <ul style="margin-top:0.5rem; margin-left: 1.25rem; font-size: 0.875rem;">
+                    <li>Already counted in your Family Size (Part 1)</li>
+                    <li>Enrolled at least half-time (6+ credits/semester)</li>
+                    <li>Working toward their FIRST bachelor's degree or certificate</li>
+                    <li>Attending during <span class="dynamic-aid-year">2025-2026</span> aid year</li>
+                  </ul>
+                  <span style="display: block; margin-top: 0.5rem;"><strong>Do NOT count:</strong> Parents, spouse, graduate students (unless working on first bachelor's), part-time students (less than half-time), or people in non-degree programs.</span>
+                </span>
+              </span>
+              <div style="font-size: 0.75rem; color: var(--mcf-muted-foreground); margin-top: 0.25rem;">
+                Must be counted in Family Size and enrolled ≥ half-time for <span class="dynamic-aid-year-short">2025–26</span>
+              </div>
+            </span>
+            <div class="mcf-counter-control">
+              <button class="mcf-counter-btn" onclick="adjustCounter('siblingsInCollegeCount', -1)">−</button>
+              <span class="mcf-counter-value" id="siblingsInCollegeCount">0</span>
+              <button class="mcf-counter-btn" onclick="adjustCounter('siblingsInCollegeCount', 1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--mcf-background); padding: 1rem; border-radius: var(--mcf-radius); margin: 1rem 0; border-left: 4px solid var(--mcf-destructive);">
+          <strong style="color: var(--mcf-destructive);">Do NOT Include:</strong>
+          <span style="margin-left: 0.5rem; font-size: 0.875rem;">Parents, spouse, or anyone taking non-degree courses</span>
+          <span class="tooltip-trigger">
+            ℹ️
+            <span class="tooltip-popup">
+              <strong>Why These Don't Count</strong>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Parents:</strong> Even if your parents are taking college classes, FAFSA rules explicitly exclude them from "Number in College." This applies whether you're a dependent or independent student.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Spouse:</strong> If you're married, your spouse doesn't count here even if enrolled full-time. Only children/dependents count.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Non-degree courses:</strong> Anyone taking continuing education, certificate programs (non-degree), or classes without seeking a degree/diploma doesn't count.</span>
+              <span style="display: block; margin-top: 0.5rem;"><strong>Graduate students:</strong> Anyone already holding a bachelor's degree and pursuing graduate studies doesn't count (unless it's their first bachelor's degree).</span>
+            </span>
+          </span>
+        </div>
+
+        <div class="mcf-result-box">
+          <div class="mcf-result-label">Total Number in College</div>
+          <div class="mcf-result-value" id="totalInCollege">1</div>
+        </div>
+
+        <div class="mcf-tip">
+          <strong>🔢 Manual Check:</strong> If you get "2" or more here, some schools may still consider it for institutional aid adjustments — keep documentation handy.
+        </div>
+
+        <!-- Knowledge Check: Number in College -->
+        <div class="knowledge-check">
+          <div class="kc-header">
+            <span class="kc-icon">❓</span>
+            <h4>Quick Knowledge Check</h4>
+          </div>
+          <p class="kc-question">
+            True or False: I can count my parents in "Number in College" if they're taking classes.
+          </p>
+          <div class="kc-options">
+            <button onclick="checkAnswer('q2', false, this)" class="kc-btn">True</button>
+            <button onclick="checkAnswer('q2', true, this)" class="kc-btn">False</button>
+          </div>
+          <div class="kc-feedback" id="kc-feedback-q2" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- Final Reminders -->
+      <div class="mcf-card">
+        <div class="mcf-card-header">
+          <span class="mcf-card-icon">🗝️</span>
+          <h2 class="mcf-card-title">Final Reminders
+            <span class="tooltip-trigger">
+              ℹ️
+              <span class="tooltip-popup">
+                <strong>Important Things to Remember</strong>
+                <span style="display: block; margin-top: 0.5rem;"><strong>Documentation:</strong> Keep records of financial support (pay stubs, bills, receipts, lease agreements) in case your school requests verification or if you need to appeal your aid package.</span>
+                <span style="display: block; margin-top: 0.5rem;"><strong>Updates:</strong> If your household situation changes (birth, death, divorce, job loss) before June 30, 2026, contact your school's financial aid office. They may be able to make adjustments.</span>
+                <span style="display: block; margin-top: 0.5rem;"><strong>Accuracy:</strong> Providing incorrect information on FAFSA can delay your aid or result in penalties. When in doubt, consult your school's financial aid office before submitting.</span>
+              </span>
+            </span>
+          </h2>
+        </div>
+
+        <ul class="mcf-reminder-list">
+          <li>Your Family Size = everyone supported > 50% by you (or parents).</li>
+          <li>Your Number in College = those in Family Size enrolled half-time or more.</li>
+          <li>Keep support records (pay stubs, bills, lease, etc.) for appeals or verification.</li>
+          <li>Update if household changes before June 30, 2026.</li>
+        </ul>
+
+        <!-- Resource Hub -->
+        <div class="resource-hub collapsed" id="resourceHub">
+          <div class="resource-hub-header" onclick="toggleResourceHub()">
+            <h3 class="resource-hub-title">
+              <span class="resource-hub-icon">📚</span>
+              Official FAFSA Resources & Links
+            </h3>
+            <button class="resource-hub-toggle" aria-label="Toggle resource hub">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="resource-hub-content">
+            <p class="resource-intro">
+              Use these official StudentAid.gov links to get the most up-to-date guidance on family size, support calculations, and FAFSA completion. All links open in a new tab.
+            </p>
+
+            <table class="resource-table">
+              <thead>
+                <tr>
+                  <th style="width: 15%;">FAFSA Award Year</th>
+                  <th style="width: 30%;">Topic</th>
+                  <th style="width: 55%;">Official Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Award Year"><span class="award-year-badge">2025–2026</span></td>
+                  <td data-label="Topic"><strong>Family Size Definition</strong> (Current)</td>
+                  <td data-label="Link">
+                    <a href="https://studentaid.gov/2526/help/family-size" target="_blank" rel="noopener noreferrer" class="resource-link">
+                      studentaid.gov/2526/help/family-size
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Award Year"><span class="award-year-badge">2025–2026</span></td>
+                  <td data-label="Topic"><strong>Family Size Changes</strong> (If different from tax return)</td>
+                  <td data-label="Link">
+                    <a href="https://studentaid.gov/2526/help/family-size-changed" target="_blank" rel="noopener noreferrer" class="resource-link">
+                      studentaid.gov/2526/help/family-size-changed
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Award Year"><span class="award-year-badge">General</span></td>
+                  <td data-label="Topic"><strong>Who is included in the family size?</strong></td>
+                  <td data-label="Link">
+                    <a href="https://studentaid.gov/help/family-size" target="_blank" rel="noopener noreferrer" class="resource-link">
+                      studentaid.gov/help/family-size
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Award Year"><span class="award-year-badge">General</span></td>
+                  <td data-label="Topic"><strong>"Pro Tips" for the FAFSA Form</strong> (Includes section on Family Size accuracy)</td>
+                  <td data-label="Link">
+                    <a href="https://studentaid.gov/announcements-events/fafsa-support/pro-tips" target="_blank" rel="noopener noreferrer" class="resource-link">
+                      studentaid.gov/announcements-events/fafsa-support/pro-tips
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Award Year"><span class="award-year-badge">General</span></td>
+                  <td data-label="Topic"><strong>Completing the FAFSA Form: Steps for Parents</strong> (Includes family size/contributor details)</td>
+                  <td data-label="Link">
+                    <a href="https://blog.studentaid.gov/fafsa-for-parents/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                      blog.studentaid.gov/fafsa-for-parents/
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="resource-note">
+              <strong>📝 Note:</strong> The FAFSA Simplification Act replaced the term "Household Size" with "Family Size" and removed the automatic dividing of the "Number in College" from the federal aid formula. The links above reflect the most current guidance.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mcf-btn-group">
+        <button class="mcf-btn mcf-btn-success" onclick="saveAndDownload()">
+          💾 Save & Download PDF
+        </button>
+        <button class="mcf-btn mcf-btn-primary" onclick="downloadBlankTemplate()">
+          📄 Download Blank Template
+        </button>
+        <button class="mcf-btn mcf-btn-outline" onclick="resetForm()">
+          🔄 Reset Form
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mcf-footer">
+    <div class="mcf-container">
+      <div class="mcf-footer-content">
+        <div class="mcf-footer-brand">
+          <img
+            src="https://static.wixstatic.com/media/c24a60_2b6231b666214539ae22ebd2dffe7a09~mv2.png"
+            alt="My College Finance Logo"
+            style="width: 100px; height: 100px; object-fit: contain;"
+          >
+          <h2 class="mcf-footer-title">MY COLLEGE FINANCE</h2>
+        </div>
+
+        <div class="mcf-footer-links">
+          <a href="https://www.mycollegefinance.com/" class="mcf-footer-link" target="_blank">Main Website</a>
+          <span class="mcf-footer-separator">•</span>
+          <a href="https://www.mycollegefinance.com/privacy-policy" class="mcf-footer-link" target="_blank">Privacy Policy</a>
+          <span class="mcf-footer-separator">•</span>
+          <a href="https://www.mycollegefinance.com/terms-policy" class="mcf-footer-link" target="_blank">Terms of Service</a>
+          <span class="mcf-footer-separator">•</span>
+          <a href="https://linktr.ee/mycollegefinance" class="mcf-footer-link" target="_blank">Social Media</a>
+        </div>
+
+        <p class="mcf-footer-tagline">EDUCATE • MOTIVATE • ELEVATE</p>
+        <p class="mcf-footer-copyright">© 2025 My College Finance. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    // Dark Mode Implementation
+    function initDarkMode() {
+      const currentTheme = localStorage.getItem('mcf-theme') || 'light';
+      if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        updateThemeIcon(true);
+      }
+
+      const toggleBtn = document.getElementById('mcf-theme-toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const isDark = document.body.classList.toggle('dark-mode');
+          localStorage.setItem('mcf-theme', isDark ? 'dark' : 'light');
+          updateThemeIcon(isDark);
+        });
+      }
+    }
+
+    function updateThemeIcon(isDark) {
+      const sunIcon = document.querySelector('.mcf-sun-icon');
+      const moonIcon = document.querySelector('.mcf-moon-icon');
+      if (sunIcon && moonIcon) {
+        sunIcon.style.display = isDark ? 'none' : 'block';
+        moonIcon.style.display = isDark ? 'block' : 'none';
+      }
+    }
+
+    // Academic Year Update Handler
+    function updateAcademicYear() {
+      const selector = document.getElementById('academicYear');
+      const selectedValue = selector.value;
+
+      // Parse the academic year (e.g., "2025-2026")
+      const years = selectedValue.split('-');
+      const startYear = parseInt(years[0]);
+      const endYear = parseInt(years[1]);
+
+      // Calculate tax year (prior-prior year = start year - 2)
+      const taxYear = startYear - 2;
+      const filingYear = startYear - 1;
+
+      // Calculate aid year dates
+      const aidYearStart = `July 1, ${startYear}`;
+      const aidYearEnd = `June 30, ${endYear}`;
+
+      // Update hero section
+      document.getElementById('heroAcademicYear').textContent = `${startYear} – ${endYear}`;
+      document.getElementById('heroTaxYear').textContent = taxYear;
+
+      // Update tooltip content
+      document.getElementById('tooltipTaxYear').textContent = taxYear;
+      document.getElementById('tooltipAcademicYear').textContent = selectedValue;
+      document.getElementById('tooltipTaxYearFull').textContent = taxYear;
+      document.getElementById('tooltipFilingYear').textContent = filingYear;
+
+      // Update aid year dates
+      document.getElementById('aidYearDates').textContent = `${aidYearStart} - ${aidYearEnd}`;
+
+      // Update all dynamic aid year references
+      document.querySelectorAll('.dynamic-aid-year').forEach(el => {
+        el.textContent = selectedValue;
+      });
+
+      document.querySelectorAll('.dynamic-aid-year-short').forEach(el => {
+        el.textContent = `${startYear.toString().slice(-2)}–${endYear.toString().slice(-2)}`;
+      });
+
+      // Save to localStorage
+      localStorage.setItem('mcf-academic-year', selectedValue);
+      saveFormData();
+    }
+
+    // Load saved academic year on page load
+    function loadAcademicYear() {
+      const savedYear = localStorage.getItem('mcf-academic-year');
+      if (savedYear) {
+        const selector = document.getElementById('academicYear');
+        selector.value = savedYear;
+        updateAcademicYear();
+      }
+    }
+
+    // Resource Hub Toggle
+    function toggleResourceHub() {
+      const hub = document.getElementById('resourceHub');
+      const isCollapsed = hub.classList.toggle('collapsed');
+      localStorage.setItem('mcf-resource-hub-collapsed', isCollapsed);
+    }
+
+    // Load Resource Hub State
+    function loadResourceHubState() {
+      const isCollapsed = localStorage.getItem('mcf-resource-hub-collapsed');
+      // Default to collapsed (true) if not set
+      if (isCollapsed === null || isCollapsed === 'true') {
+        document.getElementById('resourceHub').classList.add('collapsed');
+      } else {
+        document.getElementById('resourceHub').classList.remove('collapsed');
+      }
+    }
+
+    // Dependency Status Handler
+    document.querySelectorAll('input[name="dependencyStatus"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const contributorLabel = document.getElementById('contributorLabel');
+        if (this.value === 'dependent') {
+          contributorLabel.innerHTML = 'Parent(s) (Contributor on FAFSA)<div style="font-size: 0.75rem; color: var(--mcf-muted-foreground); margin-top: 0.25rem;">Include each parent whose financial info is reported</div>';
+        } else {
+          contributorLabel.innerHTML = 'Spouse (if married)<div style="font-size: 0.75rem; color: var(--mcf-muted-foreground); margin-top: 0.25rem;">Include your spouse if married</div>';
+        }
+        calculateTotals();
+      });
+    });
+
+    // Counter Functions
+    function adjustCounter(counterId, delta) {
+      const counter = document.getElementById(counterId);
+      let value = parseInt(counter.textContent);
+      value = Math.max(0, value + delta);
+      
+      // Limit based on counter type
+      if (counterId === 'contributorCount') {
+        value = Math.min(2, value);
+      } else {
+        value = Math.min(20, value);
+      }
+      
+      counter.textContent = value;
+      
+      // Update visual state for siblings in college
+      if (counterId === 'siblingsInCollegeCount') {
+        const item = document.getElementById('siblingsInCollege');
+        if (value > 0) {
+          item.classList.add('counted');
+        } else {
+          item.classList.remove('counted');
+        }
+      }
+      
+      calculateTotals();
+      saveFormData();
+    }
+
+    // Checkbox Toggle (called when clicking container)
+    function toggleCheckbox(checkboxId, event) {
+      // Check if click came from checkbox itself
+      if (event && event.target.type === 'checkbox') {
+        return; // Let handleCheckboxClick handle it
+      }
+
+      const checkbox = document.getElementById(checkboxId);
+      checkbox.checked = !checkbox.checked;
+
+      updateCheckboxVisualState(checkboxId);
+      calculateTotals();
+      saveFormData();
+    }
+
+    // Handle direct checkbox clicks
+    function handleCheckboxClick(checkboxId) {
+      // Checkbox state already changed by native behavior
+      // Just update visual state and calculations
+      updateCheckboxVisualState(checkboxId);
+      calculateTotals();
+      saveFormData();
+    }
+
+    // Update visual state based on checkbox status
+    function updateCheckboxVisualState(checkboxId) {
+      const checkbox = document.getElementById(checkboxId);
+      const item = checkbox.closest('.mcf-checkbox-item');
+
+      if (checkbox.checked) {
+        item.classList.add('checked');
+      } else {
+        item.classList.remove('checked');
+      }
+    }
+
+    // Toggle Running Tally Box
+    function toggleTallyBox() {
+      const tallyBox = document.getElementById('runningTallyBox');
+      const isCollapsed = tallyBox.classList.toggle('collapsed');
+
+      // Save state to localStorage
+      localStorage.setItem('mcf-tally-collapsed', isCollapsed);
+    }
+
+    // Load Tally Box State on Page Load
+    function loadTallyBoxState() {
+      const isCollapsed = localStorage.getItem('mcf-tally-collapsed') === 'true';
+      if (isCollapsed) {
+        document.getElementById('runningTallyBox').classList.add('collapsed');
+      }
+    }
+
+    // Calculate Totals
+    function calculateTotals() {
+      // Section A Total (Student + Contributors)
+      const contributorCount = parseInt(document.getElementById('contributorCount').textContent);
+      const sectionATotal = 1 + contributorCount;
+      document.getElementById('sectionATotal').textContent = sectionATotal;
+
+      // Section B Total
+      let sectionBTotal = 0;
+      if (document.getElementById('dependentChildren').checked) {
+        sectionBTotal += parseInt(document.getElementById('dependentChildrenCount').textContent);
+      }
+      if (document.getElementById('otherDependents').checked) {
+        sectionBTotal += parseInt(document.getElementById('otherDependentsCount').textContent);
+      }
+      document.getElementById('sectionBTotal').textContent = sectionBTotal;
+
+      // Final Family Size
+      const finalFamilySize = sectionATotal + sectionBTotal;
+      document.getElementById('finalFamilySize').textContent = finalFamilySize;
+
+      // Total in College
+      const siblingsInCollege = parseInt(document.getElementById('siblingsInCollegeCount').textContent);
+      const totalInCollege = 1 + siblingsInCollege;
+      document.getElementById('totalInCollege').textContent = totalInCollege;
+
+      // Update Running Tally Box
+      updateRunningTally(finalFamilySize, totalInCollege);
+
+      // Validate inputs for common errors
+      validateInputs();
+    }
+
+    // Update Running Tally Display with Animation
+    function updateRunningTally(familySize, college) {
+      const familySizeElement = document.getElementById('tally-family-size');
+      const collegeElement = document.getElementById('tally-college');
+      const statusIcon = document.getElementById('tally-status-icon');
+      const statusText = document.getElementById('tally-status-text');
+
+      // Update values with pulse animation
+      if (familySizeElement.textContent !== familySize.toString()) {
+        familySizeElement.textContent = familySize;
+        familySizeElement.classList.add('pulse-animation');
+        setTimeout(() => familySizeElement.classList.remove('pulse-animation'), 300);
+      }
+
+      if (collegeElement.textContent !== college.toString()) {
+        collegeElement.textContent = college;
+        collegeElement.classList.add('pulse-animation');
+        setTimeout(() => collegeElement.classList.remove('pulse-animation'), 300);
+      }
+
+      // Update status
+      const studentName = document.getElementById('studentName').value;
+      if (studentName && familySize > 0) {
+        statusIcon.textContent = '✅';
+        statusText.textContent = 'Complete';
+      } else {
+        statusIcon.textContent = '⏳';
+        statusText.textContent = 'In Progress';
+      }
+    }
+
+    // Error Validation with Educational Messages
+    function validateInputs() {
+      const familySize = parseInt(document.getElementById('finalFamilySize').textContent);
+      const numberInCollege = parseInt(document.getElementById('totalInCollege').textContent);
+
+      // Clear any existing error messages
+      const existingErrors = document.querySelectorAll('.error-message');
+      existingErrors.forEach(err => err.remove());
+
+      // Validation 1: Number in College > Family Size
+      if (numberInCollege > familySize) {
+        showEducationalError(
+          'totalInCollege',
+          '⚠️ Error Detected',
+          `You entered ${numberInCollege} people in college, but your family size is only ${familySize}. This isn't possible!`,
+          '💡 Tip: Count everyone in Part 1 first, then count how many of THOSE people are in college in Part 2.'
+        );
+      }
+    }
+
+    function showEducationalError(elementId, title, message, tip) {
+      const element = document.getElementById(elementId);
+      const resultBox = element.closest('.mcf-result-box');
+
+      // Create error message element
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message';
+      errorDiv.style.cssText = `
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(253, 192, 3, 0.1) 100%);
+        border: 2px solid var(--mcf-destructive);
+        border-radius: var(--mcf-radius);
+        padding: 1rem;
+        margin-top: 1rem;
+      `;
+
+      errorDiv.innerHTML = `
+        <div style="font-weight: 700; color: var(--mcf-destructive); margin-bottom: 0.5rem;">${title}</div>
+        <p style="margin-bottom: 0.75rem; font-size: 0.875rem;">${message}</p>
+        <div style="background: var(--mcf-card); padding: 0.75rem; border-radius: calc(var(--mcf-radius) * 0.5); border-left: 4px solid var(--mcf-brand-amber);">
+          <strong style="color: var(--mcf-brand-amber);">${tip}</strong>
+        </div>
+      `;
+
+      resultBox.parentNode.insertBefore(errorDiv, resultBox.nextSibling);
+    }
+
+    // Knowledge Check Answer Handler
+    function checkAnswer(questionId, isCorrect, buttonElement) {
+      const feedback = document.getElementById(`kc-feedback-${questionId}`);
+      feedback.style.display = 'block';
+
+      // Disable all buttons for this question
+      const buttons = buttonElement.parentElement.querySelectorAll('.kc-btn');
+      buttons.forEach(btn => btn.disabled = true);
+
+      // Define question-specific feedback
+      const feedbackData = {
+        'q1': {
+          correct: `
+            <span class="kc-correct">✓ Correct!</span>
+            <p>Only include people who receive MORE THAN 51% of their support from you (or your parents). If your grandmother's Social Security covers most of her expenses, she does NOT meet this requirement.</p>
+          `,
+          incorrect: `
+            <span class="kc-incorrect">✗ Not quite.</span>
+            <p>Remember: Only count people who receive MORE THAN HALF of their support from you (or your parents if dependent). If someone has their own income covering most expenses, they don't count in your household size.</p>
+          `
+        },
+        'q2': {
+          correct: `
+            <span class="kc-correct">✓ Correct!</span>
+            <p>Parents taking classes don't count in "Number in College," even if enrolled full-time. Only students working toward their first bachelor's degree (or certain certificate programs) count in this section.</p>
+          `,
+          incorrect: `
+            <span class="kc-incorrect">✗ Not quite.</span>
+            <p>This is a common mistake! FAFSA has a specific rule: parents cannot be counted in the "Number in College" field, regardless of their enrollment status. Only undergraduate students (working toward first bachelor's) can be counted.</p>
+          `
+        }
+      };
+
+      if (isCorrect) {
+        feedback.innerHTML = feedbackData[questionId].correct;
+        feedback.style.backgroundColor = 'rgba(38, 224, 17, 0.1)';
+        feedback.style.border = '2px solid var(--mcf-brand-green)';
+      } else {
+        feedback.innerHTML = feedbackData[questionId].incorrect;
+        feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        feedback.style.border = '2px solid var(--mcf-destructive)';
+      }
+    }
+
+    // Save Form Data to localStorage
+    function saveFormData() {
+      const formData = {
+        studentName: document.getElementById('studentName').value,
+        academicYear: document.getElementById('academicYear').value,
+        dependencyStatus: document.querySelector('input[name="dependencyStatus"]:checked').value,
+        contributorCount: document.getElementById('contributorCount').textContent,
+        dependentChildren: document.getElementById('dependentChildren').checked,
+        dependentChildrenCount: document.getElementById('dependentChildrenCount').textContent,
+        otherDependents: document.getElementById('otherDependents').checked,
+        otherDependentsCount: document.getElementById('otherDependentsCount').textContent,
+        siblingsInCollegeCount: document.getElementById('siblingsInCollegeCount').textContent
+      };
+      localStorage.setItem('mcf-fafsa-worksheet', JSON.stringify(formData));
+    }
+
+    // Load Form Data from localStorage
+    function loadFormData() {
+      const savedData = localStorage.getItem('mcf-fafsa-worksheet');
+      if (savedData) {
+        const data = JSON.parse(savedData);
+        document.getElementById('studentName').value = data.studentName || '';
+
+        if (data.academicYear) {
+          document.getElementById('academicYear').value = data.academicYear;
+          updateAcademicYear();
+        }
+
+        const dependencyRadio = document.querySelector(`input[name="dependencyStatus"][value="${data.dependencyStatus}"]`);
+        if (dependencyRadio) {
+          dependencyRadio.checked = true;
+          dependencyRadio.dispatchEvent(new Event('change'));
+        }
+        
+        document.getElementById('contributorCount').textContent = data.contributorCount || '2';
+        document.getElementById('dependentChildrenCount').textContent = data.dependentChildrenCount || '0';
+        document.getElementById('otherDependentsCount').textContent = data.otherDependentsCount || '0';
+        document.getElementById('siblingsInCollegeCount').textContent = data.siblingsInCollegeCount || '0';
+        
+        if (data.dependentChildren) {
+          document.getElementById('dependentChildren').checked = true;
+          updateCheckboxVisualState('dependentChildren');
+        }
+
+        if (data.otherDependents) {
+          document.getElementById('otherDependents').checked = true;
+          updateCheckboxVisualState('otherDependents');
+        }
+        
+        calculateTotals();
+      }
+    }
+
+    // Auto-save on input changes
+    document.getElementById('studentName').addEventListener('input', saveFormData);
+
+    // Reset Form
+    function resetForm() {
+      if (confirm('Are you sure you want to reset the form? All data will be cleared.')) {
+        localStorage.removeItem('mcf-fafsa-worksheet');
+        document.getElementById('studentName').value = '';
+        document.querySelector('input[name="dependencyStatus"][value="dependent"]').checked = true;
+        document.getElementById('contributorCount').textContent = '2';
+        document.getElementById('dependentChildrenCount').textContent = '0';
+        document.getElementById('otherDependentsCount').textContent = '0';
+        document.getElementById('siblingsInCollegeCount').textContent = '0';
+        
+        document.querySelectorAll('.mcf-checkbox').forEach(cb => {
+          cb.checked = false;
+          cb.closest('.mcf-checkbox-item').classList.remove('checked');
+        });
+        
+        document.getElementById('siblingsInCollege').classList.remove('counted');
+        
+        calculateTotals();
+        
+        // Update contributor label
+        document.querySelectorAll('input[name="dependencyStatus"]')[0].dispatchEvent(new Event('change'));
+      }
+    }
+
+    // Save & Download PDF
+    function saveAndDownload() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      const studentName = document.getElementById('studentName').value || 'Not provided';
+      const dependencyStatus = document.querySelector('input[name="dependencyStatus"]:checked').value;
+      const finalFamilySize = document.getElementById('finalFamilySize').textContent;
+      const totalInCollege = document.getElementById('totalInCollege').textContent;
+      
+      // Header
+      doc.setFontSize(18);
+      doc.setFont(undefined, 'bold');
+      doc.text('FAFSA Household Size & Support Worksheet', 105, 20, { align: 'center' });
+      
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'normal');
+
+      // Get current academic year from selector
+      const academicYear = document.getElementById('academicYear').value;
+      const years = academicYear.split('-');
+      const taxYear = parseInt(years[0]) - 2;
+
+      doc.text(`Academic Year ${academicYear} (Uses ${taxYear} Tax Data)`, 105, 28, { align: 'center' });
+      doc.text('Course: FAFSA Mastery', 105, 35, { align: 'center' });
+      
+      // Student Information
+      doc.setFontSize(14);
+      doc.setFont(undefined, 'bold');
+      doc.text('Student Information', 20, 50);
+      
+      doc.setFontSize(11);
+      doc.setFont(undefined, 'normal');
+      doc.text(`Student Name: ${studentName}`, 20, 58);
+      doc.text(`Dependency Status: ${dependencyStatus === 'dependent' ? 'Dependent' : 'Independent'}`, 20, 65);
+      
+      // Results
+      doc.setFontSize(14);
+      doc.setFont(undefined, 'bold');
+      doc.text('Results', 20, 80);
+      
+      doc.setFontSize(11);
+      doc.setFont(undefined, 'normal');
+      doc.text(`Total FAFSA Family Size: ${finalFamilySize}`, 20, 88);
+      doc.text(`Total Number in College: ${totalInCollege}`, 20, 95);
+      
+      // Section A Details
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Section A: Required Family Members', 20, 110);
+      
+      doc.setFontSize(10);
+      doc.setFont(undefined, 'normal');
+      doc.text('• The Student: 1', 25, 118);
+      const contributorCount = document.getElementById('contributorCount').textContent;
+      doc.text(`• ${dependencyStatus === 'dependent' ? 'Parent(s)' : 'Spouse'}: ${contributorCount}`, 25, 125);
+      doc.text(`Section A Total: ${parseInt(contributorCount) + 1}`, 25, 132);
+      
+      // Section B Details
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Section B: Other Eligible Family Members', 20, 145);
+      
+      doc.setFontSize(10);
+      doc.setFont(undefined, 'normal');
+      let yPos = 153;
+      
+      if (document.getElementById('dependentChildren').checked) {
+        const count = document.getElementById('dependentChildrenCount').textContent;
+        doc.text(`• Dependent Children: ${count}`, 25, yPos);
+        yPos += 7;
+      }
+      
+      if (document.getElementById('otherDependents').checked) {
+        const count = document.getElementById('otherDependentsCount').textContent;
+        doc.text(`• Other Dependents: ${count}`, 25, yPos);
+        yPos += 7;
+      }
+      
+      const sectionBTotal = document.getElementById('sectionBTotal').textContent;
+      doc.text(`Section B Total: ${sectionBTotal}`, 25, yPos);
+      
+      // Number in College Details
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Number in College', 20, yPos + 15);
+      
+      doc.setFontSize(10);
+      doc.setFont(undefined, 'normal');
+      doc.text('• The Student: 1', 25, yPos + 23);
+      const siblingsCount = document.getElementById('siblingsInCollegeCount').textContent;
+      doc.text(`• Siblings/Dependents in College: ${siblingsCount}`, 25, yPos + 30);
+      
+      // Reminders
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Important Reminders:', 20, yPos + 45);
+      
+      doc.setFontSize(9);
+      doc.setFont(undefined, 'normal');
+      const reminders = [
+        'Your Family Size = everyone supported > 50% by you (or parents)',
+        'Your Number in College = those in Family Size enrolled half-time or more',
+        'Keep support records for appeals or verification',
+        'Update if household changes before June 30, 2026'
+      ];
+      
+      let reminderY = yPos + 53;
+      reminders.forEach(reminder => {
+        doc.text(`• ${reminder}`, 25, reminderY);
+        reminderY += 6;
+      });
+      
+      // Footer
+      doc.setFontSize(8);
+      doc.setTextColor(100);
+      doc.text('My College Finance - EDUCATE • MOTIVATE • ELEVATE', 105, 280, { align: 'center' });
+      doc.text('© 2025 My College Finance. All rights reserved.', 105, 285, { align: 'center' });
+      doc.text(`Generated: ${new Date().toLocaleDateString()}`, 105, 290, { align: 'center' });
+      
+      // Save the PDF
+      const filename = `FAFSA_Worksheet_${studentName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
+      doc.save(filename);
+      
+      // Save form data
+      saveFormData();
+
+      // Show success message
+      alert('✅ Your worksheet has been saved and downloaded!');
+    }
+
+    // Download Blank Template PDF
+    function downloadBlankTemplate() {
+      // Wix-hosted PDF URL
+      const pdfUrl = 'https://c24a6085-0fd6-48fe-8d65-4ce498df8742.usrfiles.com/ugd/c24a60_0f2e31a4229b4a7da2c9856b49b8080e.pdf';
+
+      // Create a link element
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.download = 'MCF_FAFSA_Household_Worksheet_BLANK_TEMPLATE.pdf';
+      link.target = '_blank'; // Open in new tab if download doesn't work
+      link.rel = 'noopener noreferrer'; // Security best practice
+
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Show success message
+      setTimeout(() => {
+        alert('📄 Blank template download started!');
+      }, 100);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initDarkMode();
+      loadAcademicYear();
+      loadFormData();
+      loadTallyBoxState();
+      loadResourceHubState();
+      calculateTotals();
+    });
+  </script>
+</body>
+</html>
